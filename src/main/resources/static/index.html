@@ -5,6 +5,57 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>Let's go for it baby!</h1>
+
+<div class="wrapper">
+    <header>
+        <h1><span>// </span>TECH ICON QUIZ<span> //</span></h1>
+    </header>
+
+    <div class="scoreboard">
+        <div class="score-item">
+            <span class="score-label">Correct</span>
+            <span class="score-value correct" id="score-correct">0</span>
+        </div>
+        <div class="sep"></div>
+        <div class="score-item">
+            <span class="score-label">Wrong</span>
+            <span class="score-value wrong" id="score-wrong">0</span>
+        </div>
+        <div class="sep"></div>
+        <div class="score-item">
+            <span class="score-label">Total</span>
+            <span class="score-value total" id="score-total">0</span>
+        </div>
+    </div>
+
+    <div class="card" id="main-card">
+        <div class="progress-bar" id="progress-bar"></div>
+
+        <span class="question-num" id="question-num">Question 1 / 20</span>
+
+        <div class="icon-box" id="icon-box">
+            <img id="tech-icon" src="" alt="Tech Icon" class="blurred"/>
+            <span class="streak-badge" id="streak-badge">🔥 x3</span>
+        </div>
+
+        <div class="reveal-name hidden" id="reveal-name">—</div>
+
+        <div class="input-area">
+            <input type="text" id="answer-input" placeholder="Name this tech..." autocomplete="off" spellcheck="false"/>
+            <button id="submit-btn">CHECK</button>
+        </div>
+
+        <button class="next-btn" id="next-btn">NEXT →</button>
+
+        <div class="hint">Press <kbd>Enter</kbd> to submit · <kbd>Tab</kbd> for next</div>
+    </div>
+
+    <div class="card end-screen" id="end-screen">
+        <div class="end-emoji" id="end-emoji">🏆</div>
+        <div class="end-title" id="end-title">Quiz Complete!</div>
+        <div class="end-stats" id="end-stats"></div>
+        <button class="restart-btn" onclick="startQuiz()">PLAY AGAIN</button>
+    </div>
+</div>
 </body>
 </html>
