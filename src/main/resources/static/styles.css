@@ -1,0 +1,444 @@
+:root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --border: #1e1e2e;
+    --accent: #00ff88;
+    --accent2: #ff3366;
+    --accent3: #7c5cfc;
+    --text: #e8e8f0;
+    --muted: #555570;
+    --card: #13131f;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 40% at 20% 20%, rgba(124, 92, 252, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 30% at 80% 80%, rgba(0, 255, 136, 0.06) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.wrapper {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 600px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+}
+
+header {
+    text-align: center;
+}
+
+header h1 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    text-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+}
+
+header h1 span {
+    color: var(--muted);
+}
+
+.scoreboard {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.score-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.score-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.score-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.score-value.correct {
+    color: var(--accent);
+    text-shadow: 0 0 16px rgba(0, 255, 136, 0.5);
+}
+
+.score-value.wrong {
+    color: var(--accent2);
+    text-shadow: 0 0 16px rgba(255, 51, 102, 0.5);
+}
+
+.score-value.total {
+    color: var(--accent3);
+}
+
+.sep {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+}
+
+/* Card */
+.card {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent3), transparent);
+    opacity: 0.5;
+}
+
+.progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.5s ease;
+    box-shadow: 0 0 8px var(--accent);
+}
+
+.question-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+}
+
+.icon-box {
+    width: 140px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.icon-box.reveal-correct {
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+    border-color: var(--accent);
+    animation: pulseGreen 0.5s ease;
+}
+
+.icon-box.reveal-wrong {
+    box-shadow: 0 0 30px rgba(255, 51, 102, 0.3);
+    border-color: var(--accent2);
+    animation: pulseRed 0.5s ease;
+}
+
+@keyframes pulseGreen {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.08);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes pulseRed {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(-6px);
+    }
+    40% {
+        transform: translateX(6px);
+    }
+    60% {
+        transform: translateX(-4px);
+    }
+    80% {
+        transform: translateX(4px);
+    }
+}
+
+.icon-box img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    transition: filter 0.3s ease;
+}
+
+.icon-box img.blurred {
+    filter: blur(16px) brightness(0.6);
+}
+
+.reveal-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-align: center;
+    min-height: 1.5em;
+    transition: opacity 0.3s;
+}
+
+.reveal-name.correct {
+    color: var(--accent);
+}
+
+.reveal-name.wrong {
+    color: var(--accent2);
+}
+
+.reveal-name.hidden {
+    opacity: 0;
+}
+
+/* Input */
+.input-area {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+
+.input-area input {
+    flex: 1;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    padding: 12px 16px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-area input:focus {
+    border-color: var(--accent3);
+    box-shadow: 0 0 0 3px rgba(124, 92, 252, 0.15);
+}
+
+.input-area input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.input-area button {
+    background: var(--accent);
+    border: none;
+    border-radius: 10px;
+    color: #000;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 12px 20px;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+    white-space: nowrap;
+}
+
+.input-area button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(0, 255, 136, 0.3);
+}
+
+.input-area button:active {
+    transform: translateY(0);
+}
+
+.input-area button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Next btn */
+.next-btn {
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    padding: 12px;
+    cursor: pointer;
+    letter-spacing: 0.08em;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    display: none;
+}
+
+.next-btn.visible {
+    display: block;
+}
+
+.next-btn:hover {
+    border-color: var(--accent3);
+    color: var(--accent3);
+    background: rgba(124, 92, 252, 0.08);
+}
+
+/* Hint */
+.hint {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-align: center;
+}
+
+.hint kbd {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 0.7rem;
+    color: var(--text);
+}
+
+/* End screen */
+.end-screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+    padding: 20px;
+}
+
+.end-screen.visible {
+    display: flex;
+}
+
+.end-emoji {
+    font-size: 4rem;
+    line-height: 1;
+}
+
+.end-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--accent);
+    text-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+}
+
+.end-stats {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 2;
+}
+
+.end-stats strong {
+    color: var(--text);
+}
+
+.restart-btn {
+    background: var(--accent3);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    padding: 14px 32px;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.restart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(124, 92, 252, 0.4);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeInUp 0.4s ease;
+}
+
+.icon-swap {
+    animation: fadeInUp 0.35s ease;
+}
+
+.streak-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--accent2);
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 3px 7px;
+    border-radius: 20px;
+    display: none;
+}
+
+.streak-badge.show {
+    display: block;
+    animation: fadeInUp 0.3s ease;
+}
