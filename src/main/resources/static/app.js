@@ -55,6 +55,12 @@ function setBusy(isBusy) {
     state.isLoading = isBusy;
     elements.submitBtn.disabled = isBusy || state.quizFinished;
     elements.answerInput.disabled = isBusy || state.quizFinished;
+
+    if (!isBusy && !state.quizFinished) {
+        window.requestAnimationFrame(() => {
+            focusAnswerInput();
+        });
+    }
 }
 
 function clearAdvanceTimer() {
@@ -62,6 +68,15 @@ function clearAdvanceTimer() {
         window.clearTimeout(state.advanceTimerId);
         state.advanceTimerId = null;
     }
+}
+
+function focusAnswerInput() {
+    if (elements.answerInput.disabled) {
+        return;
+    }
+
+    elements.answerInput.focus({ preventScroll: true });
+    elements.answerInput.setSelectionRange(0, elements.answerInput.value.length);
 }
 
 function showMessage(message, tone = "wrong") {
@@ -125,7 +140,7 @@ function renderQuestion(question) {
         : "Tech icon";
 
     elements.answerInput.value = "";
-    elements.answerInput.focus();
+    focusAnswerInput();
 }
 
 function renderAnswer(answer) {
@@ -202,7 +217,7 @@ async function submitAnswer() {
     const answer = elements.answerInput.value.trim();
     if (!answer) {
         showMessage("Type an answer before checking.", "wrong");
-        elements.answerInput.focus();
+        focusAnswerInput();
         return;
     }
 
