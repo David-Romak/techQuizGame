@@ -217,11 +217,6 @@ header h1 span {
     width: 90px;
     height: 90px;
     object-fit: contain;
-    transition: filter 0.3s ease;
-}
-
-.icon-box img.blurred {
-    filter: blur(16px) brightness(0.6);
 }
 
 .reveal-name {
@@ -304,32 +299,6 @@ header h1 span {
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
-}
-
-/* Next btn */
-.next-btn {
-    width: 100%;
-    background: transparent;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    color: var(--text);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.85rem;
-    padding: 12px;
-    cursor: pointer;
-    letter-spacing: 0.08em;
-    transition: border-color 0.2s, color 0.2s, background 0.2s;
-    display: none;
-}
-
-.next-btn.visible {
-    display: block;
-}
-
-.next-btn:hover {
-    border-color: var(--accent3);
-    color: var(--accent3);
-    background: rgba(124, 92, 252, 0.08);
 }
 
 /* Hint */

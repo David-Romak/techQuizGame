@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Tech Icon Quiz</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
 </head>
 <body>
 
@@ -35,7 +36,7 @@
         <span class="question-num" id="question-num">Question 1 / 20</span>
 
         <div class="icon-box" id="icon-box">
-            <img id="tech-icon" src="" alt="Tech Icon" class="blurred"/>
+            <img id="tech-icon" src="" alt="Tech Icon"/>
             <span class="streak-badge" id="streak-badge">🔥 x3</span>
         </div>
 
@@ -46,9 +47,7 @@
             <button id="submit-btn">CHECK</button>
         </div>
 
-        <button class="next-btn" id="next-btn">NEXT →</button>
-
-        <div class="hint">Press <kbd>Enter</kbd> to submit · <kbd>Tab</kbd> for next</div>
+        <div class="hint">Press <kbd>Enter</kbd> to submit · next icon loads automatically in 2 seconds</div>
     </div>
 
     <div class="card end-screen" id="end-screen">
