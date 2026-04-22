@@ -422,14 +422,14 @@ header h1 span {
 
 @media (max-width: 640px) {
     body {
-        justify-content: flex-start;
-        padding: 14px 0 24px;
+        justify-content: center;
+        padding: 18px 0;
     }
 
     .wrapper {
         max-width: 100%;
-        padding: 14px;
-        gap: 18px;
+        padding: 18px 16px 22px;
+        gap: 20px;
     }
 
     header h1 {
@@ -440,7 +440,7 @@ header h1 span {
     .scoreboard {
         width: 100%;
         gap: 14px;
-        padding: 10px 12px;
+        padding: 14px 12px;
         background: rgba(17, 17, 24, 0.82);
         border: 1px solid var(--border);
         border-radius: 16px;
@@ -463,8 +463,8 @@ header h1 span {
     }
 
     .card {
-        padding: 24px 18px;
-        gap: 22px;
+        padding: 26px 18px;
+        gap: 24px;
         border-radius: 20px;
     }
 
@@ -485,7 +485,7 @@ header h1 span {
 
     .reveal-name {
         font-size: 1.15rem;
-        min-height: 2.6em;
+        min-height: 2.8em;
     }
 
     .input-area {
@@ -512,11 +512,12 @@ header h1 span {
 
     .hint {
         font-size: 0.95rem;
+        margin-top: 2px;
     }
 
     .end-screen {
         gap: 16px;
-        padding: 8px 0 0;
+        padding: 10px 0 2px;
     }
 
     .end-emoji {
